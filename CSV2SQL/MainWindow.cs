@@ -28,32 +28,43 @@ namespace CSV2SQL
         private void work()
         {
             String[] lines = File.ReadAllLines(filename);
+            String Statement = "";
             for (int i = 0; i < lines.Length; i++)
             {
                 string currentLine = lines[i];
-                
+                if (i == 0)
+                {
+                    String[] fields = currentLine.Split(Program.Seperator);
 
+                    Statement += Program.CurrentSystem.Create(Path.GetFileNameWithoutExtension(filename), fields);
+
+                }
+                else
+                {
+                    String[] values = currentLine.Split(Program.Seperator);
+                    Statement += Program.CurrentSystem.Insert(Path.GetFileNameWithoutExtension(filename), values);
+                }
             }
         }
 
         private void startButton_Click(object sender, EventArgs e)
         {
-            
+
             workerThread.Start();
         }
 
         private void browseFileButton_Click(object sender, EventArgs e)
         {
             fileBrowser.Filter = "Comma Seperated Values (CSV)|*.CSV";
-            
-            
+
+
             if (fileBrowser.ShowDialog() == DialogResult.OK)
             {
-                
+
                 startButton.Enabled = true;
                 filename = fileBrowser.FileName;
-                
-                
+
+
             }
         }
 
