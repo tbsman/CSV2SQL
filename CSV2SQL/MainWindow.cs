@@ -13,12 +13,12 @@ using System.Windows.Shell;
 
 namespace CSV2SQL
 {
-    public partial class Form1 : Form
+    public partial class MainWindow : Form
     {
         TaskbarItemInfo info;
         Thread workerThread;
         String filename;
-        public Form1()
+        public MainWindow()
         {
             InitializeComponent();
             info = new TaskbarItemInfo();
@@ -49,6 +49,7 @@ namespace CSV2SQL
             
             if (fileBrowser.ShowDialog() == DialogResult.OK)
             {
+                
                 startButton.Enabled = true;
                 filename = fileBrowser.FileName;
                 
