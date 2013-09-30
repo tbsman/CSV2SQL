@@ -34,5 +34,9 @@ namespace CSV2SQL
 
             return Statement;
         }
+        public override string ToString()
+        {
+            return "MySQL";
+        }
     }
 }

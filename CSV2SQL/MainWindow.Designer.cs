@@ -30,11 +30,15 @@
         {
             this.layoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.progressPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.progressBar = new wyDay.Controls.Windows7ProgressBar();
             this.settingsPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.browseFileButton = new System.Windows.Forms.Button();
             this.browseFolderButton = new System.Windows.Forms.Button();
             this.startButton = new System.Windows.Forms.Button();
+            this.sqlSystemLabel = new System.Windows.Forms.Label();
+            this.sqlSystemBox = new System.Windows.Forms.ComboBox();
+            this.csvSeperatorLabel = new System.Windows.Forms.Label();
+            this.csvSeperatorBox = new System.Windows.Forms.TextBox();
             this.folderBrowser = new System.Windows.Forms.FolderBrowserDialog();
             this.fileBrowser = new System.Windows.Forms.OpenFileDialog();
             this.layoutPanel.SuspendLayout();
@@ -56,7 +60,7 @@
             this.layoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.layoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.layoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.layoutPanel.Size = new System.Drawing.Size(506, 261);
+            this.layoutPanel.Size = new System.Drawing.Size(476, 274);
             this.layoutPanel.TabIndex = 0;
             // 
             // progressPanel
@@ -66,20 +70,22 @@
             this.progressPanel.Controls.Add(this.progressBar, 0, 0);
             this.progressPanel.Cursor = System.Windows.Forms.Cursors.Default;
             this.progressPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.progressPanel.Location = new System.Drawing.Point(3, 123);
+            this.progressPanel.Location = new System.Drawing.Point(3, 130);
             this.progressPanel.Name = "progressPanel";
             this.progressPanel.RowCount = 2;
             this.progressPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.progressPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.progressPanel.Size = new System.Drawing.Size(500, 114);
+            this.progressPanel.Size = new System.Drawing.Size(470, 121);
             this.progressPanel.TabIndex = 0;
             // 
             // progressBar
             // 
+            this.progressBar.ContainerControl = this;
             this.progressBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.progressBar.Location = new System.Drawing.Point(3, 3);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(494, 51);
+            this.progressBar.ShowInTaskbar = true;
+            this.progressBar.Size = new System.Drawing.Size(464, 54);
             this.progressBar.TabIndex = 0;
             // 
             // settingsPanel
@@ -87,10 +93,14 @@
             this.settingsPanel.Controls.Add(this.browseFileButton);
             this.settingsPanel.Controls.Add(this.browseFolderButton);
             this.settingsPanel.Controls.Add(this.startButton);
+            this.settingsPanel.Controls.Add(this.sqlSystemLabel);
+            this.settingsPanel.Controls.Add(this.sqlSystemBox);
+            this.settingsPanel.Controls.Add(this.csvSeperatorLabel);
+            this.settingsPanel.Controls.Add(this.csvSeperatorBox);
             this.settingsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.settingsPanel.Location = new System.Drawing.Point(3, 3);
             this.settingsPanel.Name = "settingsPanel";
-            this.settingsPanel.Size = new System.Drawing.Size(500, 114);
+            this.settingsPanel.Size = new System.Drawing.Size(470, 121);
             this.settingsPanel.TabIndex = 1;
             // 
             // browseFileButton
@@ -123,21 +133,59 @@
             this.startButton.UseVisualStyleBackColor = true;
             this.startButton.Click += new System.EventHandler(this.startButton_Click);
             // 
+            // sqlSystemLabel
+            // 
+            this.sqlSystemLabel.AutoSize = true;
+            this.sqlSystemLabel.Location = new System.Drawing.Point(255, 0);
+            this.sqlSystemLabel.Name = "sqlSystemLabel";
+            this.sqlSystemLabel.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
+            this.sqlSystemLabel.Size = new System.Drawing.Size(76, 19);
+            this.sqlSystemLabel.TabIndex = 4;
+            this.sqlSystemLabel.Text = "SQL Software:";
+            // 
+            // sqlSystemBox
+            // 
+            this.sqlSystemBox.FormattingEnabled = true;
+            this.sqlSystemBox.Location = new System.Drawing.Point(337, 3);
+            this.sqlSystemBox.Name = "sqlSystemBox";
+            this.sqlSystemBox.Size = new System.Drawing.Size(121, 21);
+            this.sqlSystemBox.TabIndex = 3;
+            // 
+            // csvSeperatorLabel
+            // 
+            this.csvSeperatorLabel.AutoSize = true;
+            this.csvSeperatorLabel.Location = new System.Drawing.Point(3, 29);
+            this.csvSeperatorLabel.Name = "csvSeperatorLabel";
+            this.csvSeperatorLabel.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
+            this.csvSeperatorLabel.Size = new System.Drawing.Size(80, 19);
+            this.csvSeperatorLabel.TabIndex = 5;
+            this.csvSeperatorLabel.Text = "CSV Seperator:";
+            // 
+            // csvSeperatorBox
+            // 
+            this.csvSeperatorBox.Location = new System.Drawing.Point(89, 32);
+            this.csvSeperatorBox.MaxLength = 1;
+            this.csvSeperatorBox.Name = "csvSeperatorBox";
+            this.csvSeperatorBox.Size = new System.Drawing.Size(14, 20);
+            this.csvSeperatorBox.TabIndex = 6;
+            this.csvSeperatorBox.Text = ",";
+            // 
             // fileBrowser
             // 
             this.fileBrowser.FileName = "openFileDialog1";
             // 
-            // Form1
+            // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(506, 261);
+            this.ClientSize = new System.Drawing.Size(476, 274);
             this.Controls.Add(this.layoutPanel);
-            this.Name = "Form1";
+            this.Name = "MainWindow";
             this.Text = "CSV2SQL - therealtbs.me";
             this.layoutPanel.ResumeLayout(false);
             this.progressPanel.ResumeLayout(false);
             this.settingsPanel.ResumeLayout(false);
+            this.settingsPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -146,13 +194,17 @@
 
         private System.Windows.Forms.TableLayoutPanel layoutPanel;
         private System.Windows.Forms.TableLayoutPanel progressPanel;
-        private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.FlowLayoutPanel settingsPanel;
         private System.Windows.Forms.Button startButton;
         private System.Windows.Forms.Button browseFileButton;
         private System.Windows.Forms.Button browseFolderButton;
         private System.Windows.Forms.FolderBrowserDialog folderBrowser;
         private System.Windows.Forms.OpenFileDialog fileBrowser;
+        private System.Windows.Forms.ComboBox sqlSystemBox;
+        private System.Windows.Forms.Label sqlSystemLabel;
+        private System.Windows.Forms.Label csvSeperatorLabel;
+        private System.Windows.Forms.TextBox csvSeperatorBox;
+        private wyDay.Controls.Windows7ProgressBar progressBar;
     }
 }
 

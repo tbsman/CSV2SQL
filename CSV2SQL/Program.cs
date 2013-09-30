@@ -8,8 +8,7 @@ namespace CSV2SQL
 {
     static class Program
     {
-        public static SQLSystem CurrentSystem;
-        public static char Seperator;
+        
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
