@@ -121,6 +121,7 @@
             this.browseFolderButton.TabIndex = 2;
             this.browseFolderButton.Text = "Browse Folder";
             this.browseFolderButton.UseVisualStyleBackColor = true;
+            this.browseFolderButton.Click += new System.EventHandler(this.browseFolderButton_Click);
             // 
             // startButton
             // 
